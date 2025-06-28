@@ -33,10 +33,10 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Select,
-  SelectContent,
-  SelectItem,
   SelectTrigger,
   SelectValue,
+  SelectContent,
+  SelectItem,
 } from "@/components/ui/select";
 import CustomNode from "./CustomNode";
 import { validateDAG } from "@/utils/dagValidation";
@@ -52,7 +52,6 @@ const nodeTypes = {
 
 const initialNodes: Node[] = [];
 const initialEdges: Edge[] = [];
-
 
 const nodeThemes = {
   default: { bg: "bg-white", border: "border-gray-200", text: "text-gray-900" },
@@ -416,21 +415,26 @@ const DAGBuilderFlow = () => {
           </Card>
 
           {/* Theme Selector */}
-          <Card className="p-4">
-            <h3 className="font-semibold text-sm mb-3 flex items-center">
+          <Card className="p-4 bg-white dark:bg-muted border border-border">
+            <h3 className="font-semibold text-sm mb-3 flex items-center text-foreground">
               <Palette className="w-4 h-4 mr-2" />
               Node Theme
             </h3>
+
             <Select
               value={selectedTheme}
               onValueChange={(value: keyof typeof nodeThemes) =>
                 changeNodeTheme(value)
               }
             >
-              <SelectTrigger className="w-full">
-                <SelectValue />
+              <SelectTrigger className="w-full bg-background border border-border text-foreground shadow-sm">
+                <SelectValue placeholder="Select theme" />
               </SelectTrigger>
-              <SelectContent>
+
+              <SelectContent
+                className="bg-white dark:bg-popover border border-border text-foreground shadow-md rounded-md z-[100]"
+                side="bottom"
+              >
                 <SelectItem value="default">Default</SelectItem>
                 <SelectItem value="blue">Blue</SelectItem>
                 <SelectItem value="green">Green</SelectItem>
@@ -524,7 +528,11 @@ const DAGBuilderFlow = () => {
             {validation.errors.length > 0 && (
               <div className="space-y-2">
                 {validation.errors.map((error, index) => (
-                  <Badge key={index} variant="destructive" className="text-xs text-red-600">
+                  <Badge
+                    key={index}
+                    variant="destructive"
+                    className="text-xs text-red-600"
+                  >
                     {error}
                   </Badge>
                 ))}

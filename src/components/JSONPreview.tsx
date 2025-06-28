@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -60,7 +59,7 @@ const JSONPreview: React.FC<JSONPreviewProps> = ({ nodes, edges, onClose, embedd
         </div>
         
         <div className="p-4 border-t">
-          <Button onClick={onClose} className="w-full">
+          <Button onClick={onClose} className="w-full bg-gray-800 text-white">
             Close Preview
           </Button>
         </div>
